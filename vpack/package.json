@@ -6,10 +6,10 @@
   "cordovaId": "org.cordova.package.builder",
   "private": false,
   "license": "MIT",
-  "main": "dist/vpack.es.js",
-  "browser": "dist/vpack.es.js",
-  "module": "dist/vpack.es.js",
-  "unpkg": "dist/vpack.es.js",
+  "main": "./bin/vpack.js",
+  "browser": "./bin/vpack.js",
+  "module": "./bin/vpack.js",
+  "unpkg": "./bin/vpack.js",
   "author": "Heydari.H <h.heydariiii128@gmail.com>",
   "scripts": {
     "vpack": "node ./bin/vpack.js"
@@ -30,6 +30,8 @@
     "autoprefixer": "^10.4.7",
     "chalk": "4.1.0",
     "cssnano": "^5.1.12",
+    "global": "^4.4.0",
+    "merge-deep": "^3.0.3",
     "minimist": "^1.2.6",
     "postcss": "8",
     "rimraf": "^3.0.2",

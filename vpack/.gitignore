@@ -3,3 +3,4 @@ example-app/node_modules
 vpack/node_modules
 **/node_modules
 **/yarn.lock
+/build-rollup/

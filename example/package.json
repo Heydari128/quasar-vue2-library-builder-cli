@@ -13,7 +13,7 @@
   "author": "Heydari.H <h.heydariiii128@gmail.com>",
   "scripts": {
     "dev": "quasar dev",
-    "build": "package-builder"
+    "vpack": "node ../vpack/bin/vpack.js"
   },
   "files": [
     "dist"

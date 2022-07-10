@@ -5,7 +5,7 @@ function getAppDir () {
   let dir = process.cwd()
 
   while (dir.length && dir[dir.length - 1] !== sep) {
-    if (fs.existsSync(join(dir, 'quasar.conf.js'))) {
+    if (fs.existsSync(join(dir, 'vpack.config.js'))) {
       return dir
     }
 
