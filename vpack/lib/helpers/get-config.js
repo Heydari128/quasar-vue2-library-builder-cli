@@ -1,6 +1,7 @@
 const path = require("path");
 const {log} = require("./logger");
 const merge = require('merge-deep');
+const getPkgFile = require('../helpers/get-app-package-json')
 module.exports = (cliArgs) => {
     const configPath = path.resolve(process.cwd(), cliArgs.config)
     log(`Looking for config file at this location: ${configPath}`)
@@ -14,25 +15,35 @@ module.exports = (cliArgs) => {
         entry: 'index.js',
         output: {
             dir: 'dist',
-            name: '##yourpackage##',
-            formats: ['es', 'cjs', 'umd'],
+            name: 'yourpackage',
+            formats: ['es'], // 'es', 'cjs', 'umd'
             minified: true,
-            clean: true
+            unminified: false,
+            sourceMap: false,
+            clean: true,
+            minExt: true,
         },
         resolver: {
             extensions: ['.vue', '.js', '.json', '.sass', '.scss']
         },
         alias: {
-            'src': path.resolve(__dirname, './src'),
-            'components': path.resolve(__dirname, './src/components'),
-        }
+            'src': './src',
+            'components': './src/components',
+        },
+        statics: {
+            // 'public': 'dist/statics'
+        },
+        env: 'production'
     }
     const configFile = require(configPath)
-    const finalConfig = merge(defaultConfig, configFile)
-    if (argEntry) finalConfig.entry = argEntry
-    if (argOutput) finalConfig.output.dir = argOutput
-    if (argName) finalConfig.output.name = argName
-    if (argFormats) finalConfig.output.formats = argFormats.split(',')
+    const config = merge(defaultConfig, configFile)
+    if (argEntry) config.entry = argEntry
+    if (argOutput) config.output.dir = argOutput
+    if (argName) config.output.name = argName
+    if (argFormats) config.output.formats = argFormats.split(',')
 
-    return finalConfig
+    config.pkg = getPkgFile()
+    config.parallel = require('os').cpus().length > 1
+
+    return config
 }
