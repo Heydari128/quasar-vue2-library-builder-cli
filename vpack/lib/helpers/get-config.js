@@ -32,7 +32,10 @@ module.exports = (cliArgs) => {
         statics: {
             // 'public': 'dist/statics'
         },
-        env: 'production'
+        env: 'production',
+        css: [
+            // 'src/css/app.scss'
+        ]
     }
     const configFile = require(configPath)
     const config = merge(defaultConfig, configFile)

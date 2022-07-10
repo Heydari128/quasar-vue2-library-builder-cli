@@ -16,8 +16,11 @@ module.exports = {
     'src': './src', // must be relative
     'components': './src/components', // must be relative
   },
-   statics: {
-       'public': 'dist' // must be relative
-   },
-   env: 'production'
+  statics: {
+    'public': 'dist' // must be relative
+  },
+  env: 'production',
+  css: [
+    'src/css/style.scss'
+  ]
 }

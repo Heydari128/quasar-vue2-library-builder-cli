@@ -51,6 +51,7 @@ createFolder(config.output.dir, process.cwd())
 if (config.output.clean) require('../scripts/script.clean')(config)
 // copy statics files
 if (config.statics) require('../scripts/script.statics')(config)
+if(config.css && config.css.length>0) require('../scripts/script.css')(config)
 
 // build library
 const customResolver = resolve({

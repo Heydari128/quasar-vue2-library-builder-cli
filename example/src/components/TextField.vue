@@ -1,9 +1,9 @@
 <template>
   <div class="text-field flex no-wrap items-center q-gutter-x-md" :class="{'q-mb-md':margin}">
     <label :style="{minWidth: labelWidth}" :htmlFor="compId">{{ label }}</label>
-    <div>
-      <q-input dense label="" v-bind="$attrs" v-on="$listeners" outlined :id="compId" :value="internalValue"
-               :type="type" @input="$emit('input', $event)"/>
+    <div :class="`${$q.dark.isActive?'bg-red': 'bg-blue'}`">
+      <q-input dense label="" outlined :id="compId" :value="internalValue"
+               :type="type" @input="updateValue"/>
     </div>
   </div>
 </template>
@@ -34,6 +34,12 @@ export default {
     return {
       compId: uid(),
       internalValue: ''
+    }
+  },
+  methods: {
+    updateValue(value) {
+      console.log('valuee', value)
+      this.$emit('input', value)
     }
   },
   watch: {
