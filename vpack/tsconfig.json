@@ -21,6 +21,6 @@
     ]
   },
   "includes": [
-    "build-rollup/**.d.ts"
+    "**.d.ts"
   ]
 }

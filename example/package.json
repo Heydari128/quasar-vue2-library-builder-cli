@@ -6,10 +6,10 @@
   "cordovaId": "org.cordova.ui.framework",
   "capacitorId": "",
   "private": false,
-  "main": "dist/ui-framework.es.js",
-  "browser": "dist/ui-framework.es.js",
-  "module": "dist/ui-framework.es.js",
-  "unpkg": "dist/ui-framework.es.js",
+  "main": "dist/ui-framework.es.min.js",
+  "browser": "dist/ui-framework.es.min.js",
+  "module": "dist/ui-framework.es.min.js",
+  "unpkg": "dist/ui-framework.es.min.js",
   "author": "Heydari.H <h.heydariiii128@gmail.com>",
   "scripts": {
     "dev": "quasar dev",
@@ -20,8 +20,8 @@
   ],
   "exports": {
     ".": {
-      "import": "./dist/ui-framework.es.js",
-      "require": "./dist/ui-framework.es.js"
+      "import": "./dist/ui-framework.es.min.js",
+      "require": "./dist/ui-framework.es.min.js"
     }
   },
   "dependencies": {

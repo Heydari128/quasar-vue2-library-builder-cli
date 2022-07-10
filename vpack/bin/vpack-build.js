@@ -18,6 +18,10 @@ const json = require('@rollup/plugin-json')
 const commonJs = require('@rollup/plugin-commonjs')
 const {terser} = require('rollup-plugin-terser')
 const alias = require('rollup-plugin-alias')
+const babel = require("rollup-plugin-babel");
+// const plugins = require(`${path.resolve(process.cwd(), 'node_modules/quasar/src/plugins.js')}`)
+
+// console.log(plugins)
 
 const quasarTypes = Object.keys(JSON.parse(readFile(path.resolve(__dirname, '../lib/helpers/quasar.json')))).filter(x => x.indexOf('-') === -1)
 const argv = parseArgs(process.argv.slice(2), {
@@ -32,6 +36,12 @@ const argv = parseArgs(process.argv.slice(2), {
 
 const config = getConfig(argv)
 process.env.NODE_ENV = config.env
+const esbrowserslist = [
+    "defaults",
+    "not IE 11",
+    "last 2 versions",
+    "maintained node versions"
+]
 
 log(`Building ${config.pkg.name} ${'v' + config.pkg.version}...${config.parallel ? ' [multi-threaded]' : ''}`)
 
@@ -58,8 +68,14 @@ let rollupPlugins = [
         })),
         customResolver
     }),
-    resolve(),
     json(),
+    vueRollup({
+        css: false,
+        compileTemplate: false,
+        target: 'browser',
+        optimizeSSR: true,
+        preprocessStyles: false,
+    }),
     Components({
         extensions: ['vue', 'js'],
         transformer: 'vue2',
@@ -67,13 +83,7 @@ let rollupPlugins = [
         include: [/\.vue$/, /\.vue\?vue/,],
         dts: getAppPaths('./components.d.ts'),
         resolvers: [
-            require('../lib/helpers/quasar-resolver.js')(),
-            (componentName) => {
-                console.log(componentName)
-                // where `componentName` is always CapitalCase
-                if (componentName.startsWith('Van'))
-                    return { name: componentName.slice(3), from: 'vant' }
-            },
+            require('../lib/helpers/quasar-resolver.js')()
         ],
         types: [{
             names: quasarTypes,
@@ -89,13 +99,6 @@ let rollupPlugins = [
         sourceMap: config.output.sourceMap,
         extensions: ['.sass', '.scss', '.less', '.css']
     }),
-    vueRollup({
-        css: false,
-        compileTemplate: false,
-        target: 'browser',
-        preprocessStyles: false,
-    }),
-    commonJs(),
 ]
 if (config.output.minified) {
     rollupPlugins.push(uglify({}))
@@ -117,7 +120,6 @@ config.output.formats.forEach(format => {
             }
         },
         build: {
-            unminified: config.output.unminified,
             minified: config.output.minified,
             minExt: config.output.minExt
         }
@@ -129,12 +131,14 @@ config.output.formats.forEach(format => {
 function genConfig(opts) {
     Object.assign(opts.rollup.input, {
         plugins: rollupPlugins,
-        external: ['vue', 'quasar']
+        external: [
+            'vue',
+            'quasar']
     })
 
     Object.assign(opts.rollup.output, {
         banner: copyright.banner,
-        globals: {vue: 'Vue', quasar: 'Quasar'}
+        globals: {vue: 'Vue', quasar: 'Quasar', quasar: '$q'}
     })
 
     return opts
@@ -169,11 +173,13 @@ function buildEntry(buildConfig) {
         .rollup(buildConfig.rollup.input)
         .then(bundle => bundle.generate(buildConfig.rollup.output))
         .then(({output}) => {
-            const code = buildConfig.rollup.output.format === 'umd'
+            let code = buildConfig.rollup.output.format === 'umd'
                 ? injectVueRequirement(output[0].code)
                 : output[0].code
 
-            return buildConfig.build.unminified
+            code = `import Vue from 'vue'; import quasar from 'quasar'; Vue.use(quasar); ${code}`
+
+            return !buildConfig.build.minified
                 ? writeFile(buildConfig.rollup.output.dir, code)
                 : code
         })
@@ -211,7 +217,3 @@ function buildEntry(buildConfig) {
 }
 
 outputs.map(genConfig).map(buildEntry)
-
-// console.log()
-// console.log(copyright.banner)
-// console.log(buildConfig)

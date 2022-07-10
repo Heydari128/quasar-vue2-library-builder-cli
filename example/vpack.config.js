@@ -5,9 +5,8 @@ module.exports = {
     name: 'ui-framework',
     formats: ['es'], // 'es', 'cjs', 'umd'
     minified: true,
-    unminified: false,
     clean: true,
-    sourceMap: true,
+    sourceMap: false,
     minExt: true,
   },
   resolver: {

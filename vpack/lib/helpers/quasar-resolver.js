@@ -6,7 +6,6 @@ module.exports = function QuasarResolver() {
     return {
         type: 'component',
         resolve: async (name) => {
-            console.log(name, allQuasarComponents[name])
             if (allQuasarComponents[name]) {
                 return {name: allQuasarComponents[name], from: 'quasar'}
             }

@@ -18,10 +18,9 @@ module.exports = (cliArgs) => {
             name: 'yourpackage',
             formats: ['es'], // 'es', 'cjs', 'umd'
             minified: true,
-            unminified: false,
             sourceMap: false,
             clean: true,
-            minExt: true,
+            minExt: false,
         },
         resolver: {
             extensions: ['.vue', '.js', '.json', '.sass', '.scss']

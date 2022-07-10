@@ -1,15 +1,11 @@
 {
-  "name": "ui-framework",
+  "name": "example-app",
   "version": "0.0.0",
-  "description": "ui-framework",
-  "productName": "ui-framework",
+  "description": "example app",
+  "productName": "example app",
   "cordovaId": "org.cordova.ui.framework",
   "capacitorId": "",
   "private": false,
-  "main": "dist/ui-framework.es.js",
-  "browser": "dist/ui-framework.es.js",
-  "module": "dist/ui-framework.es.js",
-  "unpkg": "dist/ui-framework.es.js",
   "author": "Heydari.H <h.heydariiii128@gmail.com>",
   "scripts": {
     "dev": "quasar dev",
@@ -19,16 +15,8 @@
     "postinstall2": "node ./build/post-install.js",
     "build:rollup": "node ./build-rollup/index.js"
   },
-  "files": [
-    "dist"
-  ],
-  "exports": {
-    ".": {
-      "import": "./dist/ui-framework.es.js",
-      "require": "./dist/ui-framework.es.js"
-    }
-  },
   "dependencies": {
+    "@babel/core": "^7.18.6",
     "quasar": "^1.14.3"
   },
   "devDependencies": {
