@@ -1,0 +1,53 @@
+{
+  "name": "ui-framework",
+  "version": "0.0.1",
+  "description": "ui-framework",
+  "productName": "ui-framework",
+  "cordovaId": "org.cordova.ui.framework",
+  "capacitorId": "",
+  "private": false,
+  "main": "dist/ui-framework.es.js",
+  "browser": "dist/ui-framework.es.js",
+  "module": "dist/ui-framework.es.js",
+  "unpkg": "dist/ui-framework.es.js",
+  "author": "Heydari.H <h.heydariiii128@gmail.com>",
+  "scripts": {
+    "dev": "quasar dev",
+    "build": "package-builder"
+  },
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/ui-framework.es.js",
+      "require": "./dist/ui-framework.es.js"
+    }
+  },
+  "dependencies": {
+    "quasar": "^1.14.3"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.9.5",
+    "@quasar/app": "^2.1.1",
+    "@quasar/extras": "^1.9.8",
+    "@vue/eslint-config-standard": "^7.0.0",
+    "autoprefixer": "^10.4.7",
+    "cssnano": "^5.1.12",
+    "eslint": "7.12.1",
+    "eslint-plugin-import": "2.22.1",
+    "eslint-plugin-node": "11.1.0",
+    "eslint-plugin-promise": "4.2.1",
+    "eslint-plugin-vue": "7.0.0",
+    "vue": "^2.6.14",
+    "vue-template-compiler": "^2.6.14"
+  },
+  "engines": {
+    "node": ">= 10.18.1",
+    "npm": ">= 6.13.4",
+    "yarn": ">= 1.21.1"
+  },
+  "browserslist": [
+    "last 1 version, not dead, ie >= 11"
+  ]
+}

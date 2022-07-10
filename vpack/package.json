@@ -1,0 +1,60 @@
+{
+  "name": "vpack",
+  "version": "0.0.1",
+  "description": "vpack",
+  "productName": "vpack",
+  "cordovaId": "org.cordova.package.builder",
+  "private": false,
+  "license": "MIT",
+  "main": "dist/vpack.es.js",
+  "browser": "dist/vpack.es.js",
+  "module": "dist/vpack.es.js",
+  "unpkg": "dist/vpack.es.js",
+  "author": "Heydari.H <h.heydariiii128@gmail.com>",
+  "scripts": {
+    "vpack": "node ./bin/vpack.js"
+  },
+  "bin": {
+    "vpack": "./bin/vpack"
+  },
+  "files": [
+    "dist",
+    "bin"
+  ],
+  "dependencies": {
+    "@babel/preset-env": "^7.9.5",
+    "@rollup/plugin-buble": "^0.21.3",
+    "@rollup/plugin-commonjs": "^22.0.1",
+    "@rollup/plugin-json": "^4.1.0",
+    "@rollup/plugin-node-resolve": "^13.3.0",
+    "autoprefixer": "^10.4.7",
+    "chalk": "4.1.0",
+    "cssnano": "^5.1.12",
+    "minimist": "^1.2.6",
+    "postcss": "8",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.76.0",
+    "rollup-plugin-alias": "^2.2.0",
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-postcss": "^4.0.2",
+    "rollup-plugin-scss": "^3.0.0",
+    "rollup-plugin-terser": "^7.0.2",
+    "rollup-plugin-uglify": "^6.0.4",
+    "rollup-plugin-vue2": "^0.8.1",
+    "rtlcss": "^3.5.0",
+    "sass": "^1.32.12",
+    "typescript": "^4.7.4",
+    "unplugin-vue-components": "^0.21.0",
+    "vue": "^2.6.14",
+    "vue-template-compiler": "^2.6.14"
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": ">= 10.18.1",
+    "npm": ">= 6.13.4",
+    "yarn": ">= 1.21.1"
+  },
+  "browserslist": [
+    "last 1 version, not dead, ie >= 11"
+  ]
+}
